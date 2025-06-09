@@ -132,7 +132,7 @@ def get_network(type, placeholder_input, sess_for_load=None, trainable=True):
     return net, pretrain_path_full, last_layer
 
 
-def get_graph_path(model_name):
+def get_graph_path(model_name, path):
     dyn_graph_path = {
         'cmu': 'graph/cmu/graph_opt.pb',
         'openpose_quantize': 'graph/cmu/graph_opt_q.pb',
@@ -151,7 +151,9 @@ def get_graph_path(model_name):
     else:
         base_data_dir = os.path.join(base_data_dir, 'tf_pose_data')
 
-    graph_path = os.path.join('/content/drive/My Drive/datax_volvo_additional_files/', dyn_graph_path[model_name])
+    print(f"TRYING TO RETRIEVE: {path}\\additionalFiles\\{dyn_graph_path[model_name]}")
+
+    graph_path = os.path.join(f'{path}\\additionalFiles\\', dyn_graph_path[model_name])
     if os.path.isfile(graph_path):
         return graph_path
 
